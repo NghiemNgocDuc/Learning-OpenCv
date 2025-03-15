@@ -1,0 +1,35 @@
+import cv2 as cv
+
+
+img = cv.imread('Nghiem Ngoc Duc anh 2.jpg')
+# cv.imshow('Me', img)
+
+gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
+# cv.imshow("gray", gray)
+
+
+#Blur
+blur = cv.GaussianBlur(img, (3,3), cv.BORDER_DEFAULT)
+# cv.imshow("Blur", blur)
+
+#Edge Cascade
+canny = cv.Canny(img, 125, 175)
+# cv.imshow("canny", canny)
+
+#Dilating
+dilated = cv.dilate(canny, (3,3), iterations=1)
+# cv.imshow("dilated", dilated)
+
+#Eroding
+eroded = cv.erode(dilated, (3,3), iterations=1)
+# cv.imshow("Erode", eroded)
+
+#Resize
+resized = cv.resize(img, (500, 500), interpolation=cv.INTER_AREA)
+cv.imshow("resized", resized)
+
+#Cropping
+cropped = img[50:200, 200:400]
+cv.imshow("cropped", cropped)
+
+cv.waitKey(0)
