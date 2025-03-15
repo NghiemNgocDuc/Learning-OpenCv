@@ -1,0 +1,37 @@
+import cv2 as cv
+
+# Reading image
+# img = cv.imread('Nghiem Ngoc Duc anh 2.jpg')
+# cv.imshow('Me', img)
+
+def changeRes(width, height):
+    # Live video
+    capture.set(3, width)
+    capture.set(3, height)
+
+def rescaleFrame(frame, scale = 0.2):
+    width = int(frame.shape[1] * scale)
+    height = int(frame.shape[0] * scale)
+    dimension = (width, height)
+
+    return cv.resize(frame, dimension, interpolation=cv.INTER_AREA)
+
+
+# # Reading video
+capture = cv.VideoCapture('test1.video.mp4')
+while True:
+    isTrue, frame = capture.read()
+
+    frame_resize = rescaleFrame(frame)
+
+
+    cv.imshow('Video', frame)
+    cv.imshow('Video resized', frame_resize)
+
+    if cv.waitKey(10) & 0xFF == ord('f'):
+        break
+
+capture.release()
+cv.destroyAllWindows()
+
+cv.waitKey(0)
