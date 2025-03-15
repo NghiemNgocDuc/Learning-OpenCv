@@ -1,0 +1,19 @@
+import cv2 as cv
+
+# Reading image
+img = cv.imread('Nghiem Ngoc Duc anh 2.jpg')
+cv.imshow('Me', img)
+
+# Reading video
+capture = cv.VideoCapture('test1.video.mp4')
+while True:
+    isTrue, frame = capture.read()
+    cv.imshow('Video', frame)
+
+    if cv.waitKey(10) & 0xFF == ord('f'):
+        break
+
+capture.release()
+cv.destroyAllWindows()
+
+cv.waitKey(0)
