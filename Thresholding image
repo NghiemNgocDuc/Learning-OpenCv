@@ -1,0 +1,13 @@
+import cv2 as cv
+
+img = cv.imread('Nghiem Ngoc Duc anh 2.jpg')
+
+#Simple thresholding
+gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
+
+threshhold, thresh = cv.threshold(gray, 150, 255, cv.THRESH_BINARY)
+
+#Adaptive ThreshHolding
+adaptive_thresh = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_MEAN_C, cv.THRESH_BINARY, 11, 3)
+
+cv.waitKey(0)
